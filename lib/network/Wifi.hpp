@@ -24,5 +24,6 @@ class Wifi {
 
  public:
   Wifi();
+  void begin();
   void reset();
 };

@@ -20,12 +20,17 @@
 #include "Wifi.hpp"
 
 Matrix matrix(rgbPins, addrPins, clockPin, latchPin, oePin);
-SpotifyClient spotifyClient("", "");
-Wifi wifi();
+SpotifyClient spotifyClient;
+Wifi wifi;
 
-void setup() { 
-    matrix.begin();
-    spotifyClient.begin(); 
+void setup() {
+  Serial.begin(115200);
+  // Initialize the matrix
+  matrix.begin();
+  // Initialize wifi
+  wifi.begin();
+  // Initialize the spotify config
+  spotifyClient.begin();
 }
 
 void loop() {}

@@ -16,9 +16,17 @@
 
 #include "SpotifyClient.hpp"
 
+SpotifyClient::SpotifyClient() : _spotify("", "") {
+  // Initializing with empty strings enables runtime configuration of client id
+  // and secret
+}
+
 void SpotifyClient::begin() {
-    _spotify.begin();//Start the webserver
-    while(!_spotify.is_auth()){//Wait for the user to authenticate
-        _spotify.handle_client();//Handle the client, this is necessary otherwise the webserver won't work
-    }
+  Serial.println("Initializing the Spotify library...");
+  _spotify.begin();              // Start the webserver
+  while (!_spotify.is_auth()) {  // Wait for the user to authenticate
+    _spotify.handle_client();  // Handle the client, this is necessary otherwise
+                               // the webserver won't work
+  }
+  Serial.println("Spotify library initialized");
 }

@@ -21,7 +21,8 @@
 class SpotifyClient {
  private:
   Spotify _spotify;
+
  public:
-  SpotifyClient(const char* client_id, const char* client_secret) : _spotify(client_id, client_secret) {};
+  SpotifyClient();
   void begin();
 };
