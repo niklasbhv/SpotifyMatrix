@@ -14,11 +14,12 @@
  *  limitations under the License.
  */
 
-#include "Config.hpp"
-#include "Matrix.hpp"
+#pragma once
 
-Matrix matrix(rgbPins, addrPins, clockPin, latchPin, oePin);
+#include <Arduino.h>
 
-void setup() { matrix.begin(); }
-
-void loop() {}
+uint8_t rgbPins[] = {42, 41, 40, 38, 39, 37};
+uint8_t addrPins[] = {45, 36, 48, 35, 21};
+uint8_t clockPin = 2;
+uint8_t latchPin = 47;
+uint8_t oePin = 14;

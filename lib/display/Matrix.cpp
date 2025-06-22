@@ -14,11 +14,19 @@
  *  limitations under the License.
  */
 
-#include "Config.hpp"
 #include "Matrix.hpp"
 
-Matrix matrix(rgbPins, addrPins, clockPin, latchPin, oePin);
-
-void setup() { matrix.begin(); }
-
-void loop() {}
+void Matrix::begin() {
+  Serial.println("Initializing the Matrix library...");
+  ProtomatterStatus status = _matrix.begin();
+  Serial.print("Protomatter begin() status: ");
+  Serial.println((int)status);
+  if (status != PROTOMATTER_OK) {
+    // Reset the MCU in case of a initialization failure
+    Serial.println("Matrix library failed to initialize, resetting...");
+    delay(5000);
+    esp_restart();
+  } else {
+    Serial.println("Matrix library initialized");
+  }
+}
