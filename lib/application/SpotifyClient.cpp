@@ -14,18 +14,11 @@
  *  limitations under the License.
  */
 
-#include "Config.hpp"
-#include "Matrix.hpp"
 #include "SpotifyClient.hpp"
-#include "Wifi.hpp"
 
-Matrix matrix(rgbPins, addrPins, clockPin, latchPin, oePin);
-SpotifyClient spotifyClient("", "");
-Wifi wifi();
-
-void setup() { 
-    matrix.begin();
-    spotifyClient.begin(); 
+void SpotifyClient::begin() {
+    _spotify.begin();//Start the webserver
+    while(!_spotify.is_auth()){//Wait for the user to authenticate
+        _spotify.handle_client();//Handle the client, this is necessary otherwise the webserver won't work
+    }
 }
-
-void loop() {}

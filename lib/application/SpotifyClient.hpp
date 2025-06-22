@@ -14,18 +14,14 @@
  *  limitations under the License.
  */
 
-#include "Config.hpp"
-#include "Matrix.hpp"
-#include "SpotifyClient.hpp"
-#include "Wifi.hpp"
+#pragma once
 
-Matrix matrix(rgbPins, addrPins, clockPin, latchPin, oePin);
-SpotifyClient spotifyClient("", "");
-Wifi wifi();
+#include "SpotifyEsp32.h"
 
-void setup() { 
-    matrix.begin();
-    spotifyClient.begin(); 
-}
-
-void loop() {}
+class SpotifyClient {
+ private:
+  Spotify _spotify;
+ public:
+  SpotifyClient(const char* client_id, const char* client_secret) : _spotify(client_id, client_secret) {};
+  void begin();
+};
