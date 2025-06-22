@@ -14,13 +14,22 @@
  *  limitations under the License.
  */
 
-#include "Config.hpp"
-#include "Matrix.hpp"
 #include "Wifi.hpp"
 
-Matrix matrix(rgbPins, addrPins, clockPin, latchPin, oePin);
-Wifi wifi();
-
-void setup() { matrix.begin(); }
-
-void loop() {}
+Wifi::Wifi() {
+  // set the Wi-Fi mode
+  WiFi.mode(WIFI_STA);
+  // set dark theme
+  _wm.setClass("invert");
+  // auto close configportal three minutes
+  _wm.setConfigPortalTimeout(180);
+  // create a Wi-Fi AP
+  bool res;
+  res = _wm.autoConnect("SpotifyMatrix", "matrix");
+  if (!res) {
+    Serial.println("Failed to connect or hit timeout");
+  } else {
+    Serial.println("Connected to Wi-Fi");
+  }
+}
+void Wifi::reset() { _wm.resetSettings(); }

@@ -14,13 +14,15 @@
  *  limitations under the License.
  */
 
-#include "Config.hpp"
-#include "Matrix.hpp"
-#include "Wifi.hpp"
+#pragma once
 
-Matrix matrix(rgbPins, addrPins, clockPin, latchPin, oePin);
-Wifi wifi();
+#include <WiFiManager.h>
 
-void setup() { matrix.begin(); }
+class Wifi {
+ private:
+  WiFiManager _wm;
 
-void loop() {}
+ public:
+  Wifi();
+  void reset();
+};
