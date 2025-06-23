@@ -18,8 +18,16 @@
 
 #include <Arduino.h>
 
-uint8_t rgbPins[] = {42, 41, 40, 38, 39, 37};
-uint8_t addrPins[] = {45, 36, 48, 35, 21};
-uint8_t clockPin = 2;
-uint8_t latchPin = 47;
-uint8_t oePin = 14;
+// If defined, the best fitting album cover gets selected for display
+// Otherwise the first album cover returned by the API gets selected
+#define SELECT_BEST_FITTING_ALBUM_COVER
+
+// Define the display properties
+#define DISPLAY_HEIGHT 64
+#define DISPLAY_WIDTH 64
+
+extern uint8_t rgbPins[];
+extern uint8_t addrPins[];
+extern uint8_t clockPin;
+extern uint8_t latchPin;
+extern uint8_t oePin;
